@@ -16,6 +16,7 @@
 package gui;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
@@ -57,7 +58,7 @@ public class GamePanel extends JPanel{
                  updatePositions();
              }
          });
-         timer.start();
+         //timer.start();
     }
     
     /**
@@ -66,7 +67,7 @@ public class GamePanel extends JPanel{
      */
     @Override
     protected void paintComponent(Graphics g) {
-        super.paintComponent(g);  
+        super.paintComponent(g);
         // Draw play area lines 
         g.drawLine(20, 0, 20, 480);
         g.drawLine(370, 0, 370, 480);
@@ -80,6 +81,13 @@ public class GamePanel extends JPanel{
         // Draw ball
         g2.setColor(ball.getColor());
         g2.fill(ball.getBallGraph());
+        if(!timer.isRunning()){
+            // Show start text
+            g2.setFont(new Font(null, Font.BOLD, 20));
+            g2.setColor(Color.MAGENTA);
+            g2.drawString("Press SPACEBAR to start the game!", 375, 30);
+            
+        }
     }
     
     /**
@@ -88,27 +96,33 @@ public class GamePanel extends JPanel{
      * @param value Value of the key (true if is pressed, false if not).
      */
     public void setFlag(int keyCode, boolean value){
-        switch( keyCode ) { 
-            case KeyEvent.VK_UP:
-                if(key_down == false){
-                    key_up = value;
-                }
+        if(!timer.isRunning()){
+            if(keyCode == KeyEvent.VK_SPACE){
+                timerStartStop();
+            }
+        } else {
+            switch( keyCode ) { 
+                case KeyEvent.VK_UP:
+                    if(key_down == false){
+                        key_up = value;
+                    }
+                    break;
+                case KeyEvent.VK_DOWN:
+                    if(key_up == false){
+                        key_down = value;
+                    }
+                    break;
+                case KeyEvent.VK_W:
+                    if(key_s == false){
+                        key_w = value;
+                    }
+                    break;
+                case KeyEvent.VK_S:
+                    if(key_w == false){
+                        key_s = value;
+                    }
                 break;
-            case KeyEvent.VK_DOWN:
-                if(key_up == false){
-                    key_down = value;
-                }
-                break;
-            case KeyEvent.VK_W:
-                if(key_s == false){
-                    key_w = value;
-                }
-                break;
-            case KeyEvent.VK_S:
-                if(key_w == false){
-                    key_s = value;
-                }
-            break;
+            }
         }
     }
     
@@ -137,4 +151,19 @@ public class GamePanel extends JPanel{
         repaint();
     }
     
+    private void timerStartStop(){
+        if(timer.isRunning()){
+            // Nothing to do.
+        } else {
+            timer.start();
+        }
+    }
+    
+    /**
+     * Return true if the game is running. False if not.
+     * @return True if the game is running. False if not.
+     */
+    public boolean gameRunning(){
+        return timer.isRunning();
+    }
 }

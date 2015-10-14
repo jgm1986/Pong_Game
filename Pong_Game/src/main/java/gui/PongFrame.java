@@ -62,7 +62,7 @@ public class PongFrame extends JFrame{
         addKeyListener(new KeyListener(){
             @Override
             public void keyTyped(KeyEvent ke) {
-                // Nogthing to do.
+                // Nothing to do.
             }
 
             @Override
@@ -74,6 +74,7 @@ public class PongFrame extends JFrame{
 
             @Override
             public void keyReleased(KeyEvent ke) {
+                System.out.println(ke.getKeyCode());
                 int keyCode = ke.getKeyCode();
                 game.setFlag(keyCode, false);
                 System.out.println(game.debugKeys());
