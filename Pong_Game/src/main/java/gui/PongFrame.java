@@ -17,6 +17,8 @@ package gui;
 
 import java.awt.BorderLayout;
 import java.awt.Graphics2D;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -27,7 +29,7 @@ import javax.swing.JPanel;
 public class PongFrame extends JFrame{
     public PongFrame(){
         setTitle("Pong Game - Java SE Example");
-        setSize(646, 544);
+        setSize(746, 544);
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
@@ -37,7 +39,7 @@ public class PongFrame extends JFrame{
         mainPanel.addKeyListener(null);
         
         // Auxiliar panels
-        GamePanel game = new GamePanel();
+        final GamePanel game = new GamePanel();
         
         mainPanel.add(game, BorderLayout.CENTER);
         
@@ -52,8 +54,31 @@ public class PongFrame extends JFrame{
         setLocationRelativeTo(null);
         setVisible(true);
         repaint();
-        System.out.println("Dimensiones: " + game.getSize());
+        System.out.println("Game Dimensions: " + game.getSize());
         Graphics2D g2 = (Graphics2D) game.getGraphics();
         g2.drawRect(0, 0, 10, 416);
+        
+        // Keyboard Event listener
+        addKeyListener(new KeyListener(){
+            @Override
+            public void keyTyped(KeyEvent ke) {
+                // Nogthing to do.
+            }
+
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                int keyCode = ke.getKeyCode();
+                game.setFlag(keyCode, true);
+                System.out.println(game.debugKeys());
+            }
+
+            @Override
+            public void keyReleased(KeyEvent ke) {
+                int keyCode = ke.getKeyCode();
+                game.setFlag(keyCode, false);
+                System.out.println(game.debugKeys());
+            }
+        });
+        setFocusable(true);
     }
 }
