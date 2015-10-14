@@ -16,7 +16,7 @@
 package gui;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
+import java.awt.Graphics2D;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -27,7 +27,7 @@ import javax.swing.JPanel;
 public class PongFrame extends JFrame{
     public PongFrame(){
         setTitle("Pong Game - Java SE Example");
-        setSize(640, 480);
+        setSize(646, 544);
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
@@ -38,11 +38,11 @@ public class PongFrame extends JFrame{
         
         // Auxiliar panels
         GamePanel game = new GamePanel();
-        game.setBackground(new Color(97, 218, 146));
+        
         mainPanel.add(game, BorderLayout.CENTER);
         
         GamePoints points = new GamePoints();
-        points.setBackground(Color.yellow);
+        
         mainPanel.add(points, BorderLayout.SOUTH);
         
         // Add main panel to JFrame
@@ -51,5 +51,9 @@ public class PongFrame extends JFrame{
         // Set visible
         setLocationRelativeTo(null);
         setVisible(true);
+        repaint();
+        System.out.println("Dimensiones: " + game.getSize());
+        Graphics2D g2 = (Graphics2D) game.getGraphics();
+        g2.drawRect(0, 0, 10, 416);
     }
 }
