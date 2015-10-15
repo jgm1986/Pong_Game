@@ -39,13 +39,14 @@ public class PongFrame extends JFrame{
         mainPanel.addKeyListener(null);
         
         // Auxiliar panels
-        final GamePanel game = new GamePanel();
-        
-        mainPanel.add(game, BorderLayout.CENTER);
-        
         GamePoints points = new GamePoints();
         
         mainPanel.add(points, BorderLayout.SOUTH);
+        
+        final GamePanel game = new GamePanel(points);
+        
+        mainPanel.add(game, BorderLayout.CENTER);
+        
         
         // Add main panel to JFrame
         add(mainPanel);

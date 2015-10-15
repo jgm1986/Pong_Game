@@ -43,9 +43,12 @@ public class GamePanel extends JPanel{
     private boolean key_down;
     // Timer for game refresh
     private Timer timer;
+    // Point panel
+    GamePoints pointPanel;
     
-    public GamePanel(){
+    public GamePanel(GamePoints pointPanel){
          setBackground(new Color(97, 218, 146));
+         this.pointPanel = pointPanel;
          // Players bars
          leftPlayer = new BarObject(0, 190, Color.BLUE);
          rightPlayer = new BarObject(720, 190, Color.RED);
@@ -85,8 +88,9 @@ public class GamePanel extends JPanel{
             g2.setFont(new Font(null, Font.BOLD, 20));
             g2.setColor(Color.MAGENTA);
             g2.drawString("Press SPACEBAR to start the game!", 375, 30);
-            
+            this.pointPanel.setFocusableButton(true);
         }
+        this.pointPanel.setFocusableButton(false);
     }
     
     /**
@@ -133,9 +137,11 @@ public class GamePanel extends JPanel{
         ball.updatePosition();
         switch(playerPoint()){
             case -1:
+                pointPanel.rightPoint();
                 ball.resetBall();
                 break;
             case 1:
+                pointPanel.leftPoint();
                 ball.resetBall();
                 break;
         }

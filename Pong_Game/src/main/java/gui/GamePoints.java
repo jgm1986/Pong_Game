@@ -31,6 +31,7 @@ public final class GamePoints extends JPanel{
     private int rightPoints;
     private final JLabel leftLabel;
     private final JLabel rightLabel;
+    private JButton rstPoints;
     
     /**
      * Default class constructor.
@@ -42,7 +43,7 @@ public final class GamePoints extends JPanel{
         resetPoints();
 
         // New Game Button
-        JButton rstPoints = new JButton("Reset Marker");
+        rstPoints = new JButton("Reset Marker");
         rstPoints.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
@@ -84,11 +85,14 @@ public final class GamePoints extends JPanel{
         updateLabels();
     }
     
+    public void setFocusableButton(boolean status){
+        rstPoints.setFocusable(status);
+    }
     /**
      * Method used to update text labels on screen
      */
     private void updateLabels(){
         leftLabel.setText(String.valueOf(leftPoints));
-        rightLabel.setText(String.valueOf(rightPoints));   
+        rightLabel.setText(String.valueOf(rightPoints)); 
     }
 }
