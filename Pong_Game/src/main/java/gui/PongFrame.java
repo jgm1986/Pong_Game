@@ -68,8 +68,12 @@ public class PongFrame extends JFrame{
             @Override
             public void keyPressed(KeyEvent ke) {
                 int keyCode = ke.getKeyCode();
-                game.setFlag(keyCode, true);
-                System.out.println(game.debugKeys());
+                if(keyCode == KeyEvent.VK_SPACE){
+                    game.timerStartStop();
+                } else {
+                    game.setFlag(keyCode, true);
+                    System.out.println(game.debugKeys());
+                }
             }
 
             @Override

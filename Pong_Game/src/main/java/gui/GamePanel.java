@@ -81,7 +81,7 @@ public class GamePanel extends JPanel{
         // Draw ball
         g2.setColor(ball.getColor());
         g2.fill(ball.getBallGraph());
-        if(!timer.isRunning()){
+        if(!gameRunning()){
             // Show start text
             g2.setFont(new Font(null, Font.BOLD, 20));
             g2.setColor(Color.MAGENTA);
@@ -96,33 +96,27 @@ public class GamePanel extends JPanel{
      * @param value Value of the key (true if is pressed, false if not).
      */
     public void setFlag(int keyCode, boolean value){
-        if(!timer.isRunning()){
-            if(keyCode == KeyEvent.VK_SPACE){
-                timerStartStop();
-            }
-        } else {
-            switch( keyCode ) { 
-                case KeyEvent.VK_UP:
-                    if(key_down == false){
-                        key_up = value;
-                    }
-                    break;
-                case KeyEvent.VK_DOWN:
-                    if(key_up == false){
-                        key_down = value;
-                    }
-                    break;
-                case KeyEvent.VK_W:
-                    if(key_s == false){
-                        key_w = value;
-                    }
-                    break;
-                case KeyEvent.VK_S:
-                    if(key_w == false){
-                        key_s = value;
-                    }
+        switch( keyCode ) { 
+            case KeyEvent.VK_UP:
+                if(key_down == false){
+                    key_up = value;
+                }
                 break;
-            }
+            case KeyEvent.VK_DOWN:
+                if(key_up == false){
+                    key_down = value;
+                }
+                break;
+            case KeyEvent.VK_W:
+                if(key_s == false){
+                    key_w = value;
+                }
+                break;
+            case KeyEvent.VK_S:
+                if(key_w == false){
+                    key_s = value;
+                }
+                break;
         }
     }
     
@@ -136,6 +130,7 @@ public class GamePanel extends JPanel{
     }
     
     private void updatePositions(){
+        ball.updatePosition();
         // Left player
         if(key_w){
             leftPlayer.moveUp();
@@ -151,10 +146,12 @@ public class GamePanel extends JPanel{
         repaint();
     }
     
-    private void timerStartStop(){
-        if(timer.isRunning()){
-            // Nothing to do.
+    public void timerStartStop(){
+        if(gameRunning()){
+            timer.stop();
+            repaint();
         } else {
+            System.out.println("Entramos en START");
             timer.start();
         }
     }
