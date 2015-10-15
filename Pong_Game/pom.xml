@@ -12,4 +12,22 @@
     </properties>
     <name>Pong Game</name>
     <description>This game has been developed to practise Java GUI and threads.</description>
+    
+    
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>2.6</version>
+                <configuration>
+                  <archive>
+                    <manifest>
+                        <mainClass>javase/pong_game/Pong</mainClass>
+                    </manifest>
+                  </archive>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
