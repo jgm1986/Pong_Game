@@ -33,19 +33,23 @@ import objects.BarObject;
  */
 public class GamePanel extends JPanel{
     // Game objects
-    private BarObject leftPlayer;
-    private BarObject rightPlayer;
-    private BallObject ball;
+    private final BarObject leftPlayer;
+    private final BarObject rightPlayer;
+    private final BallObject ball;
     // Keys flags
     private boolean key_w;
     private boolean key_s;
     private boolean key_up;
     private boolean key_down;
     // Timer for game refresh
-    private Timer timer;
+    private final Timer timer;
     // Point panel
     GamePoints pointPanel;
     
+    /**
+     * Default class constructor
+     * @param pointPanel Panel used to count and manager the players points.
+     */
     public GamePanel(GamePoints pointPanel){
          setBackground(new Color(97, 218, 146));
          this.pointPanel = pointPanel;
@@ -87,10 +91,8 @@ public class GamePanel extends JPanel{
             // Show start text
             g2.setFont(new Font(null, Font.BOLD, 20));
             g2.setColor(Color.MAGENTA);
-            g2.drawString("Press SPACEBAR to start the game!", 375, 30);
-            this.pointPanel.setFocusableButton(true);
+            g2.drawString("Press SPACEBAR to start the game!", 375, 30);   
         }
-        this.pointPanel.setFocusableButton(false);
     }
     
     /**
@@ -127,11 +129,15 @@ public class GamePanel extends JPanel{
      * Method for keyboard flags debug.
      * Returns a string with the keyboard game keys flags.
      * @return String with the flags status.
+     * @deprecated Only for KeyEvents debug. 
      */
     public String debugKeys(){
         return "Key status Up = " + key_up + " Down = " + key_down + " | W = " + key_w + " S = " + key_s;
     }
     
+    /**
+     * Update graphical elements positions.
+     */
     private void updatePositions(){
         // Ball position
         ball.updatePosition();
@@ -161,12 +167,14 @@ public class GamePanel extends JPanel{
         repaint();
     }
     
+    /**
+     * Method used to START / STOP the timer used to refresh graphical components.
+     */
     public void timerStartStop(){
         if(gameRunning()){
             timer.stop();
             repaint();
         } else {
-            System.out.println("Entramos en START");
             timer.start();
         }
     }
@@ -181,7 +189,7 @@ public class GamePanel extends JPanel{
 
     /**
      * This method check if the ball has found a player bar to continue the game
-     * or not to point the player.
+     * or not to point the player. Check if the user has lost the ball.
      * @return Returns -1 if left player loss the ball, 0 player hit the ball and
      * 1 if the right player loss the ball.
      */

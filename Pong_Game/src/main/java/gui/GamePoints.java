@@ -16,8 +16,8 @@
 package gui;
 
 import java.awt.FlowLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -31,7 +31,7 @@ public final class GamePoints extends JPanel{
     private int rightPoints;
     private final JLabel leftLabel;
     private final JLabel rightLabel;
-    private JButton rstPoints;
+    private final JButton rstPoints;
     
     /**
      * Default class constructor.
@@ -44,11 +44,33 @@ public final class GamePoints extends JPanel{
 
         // New Game Button
         rstPoints = new JButton("Reset Marker");
-        rstPoints.addActionListener(new ActionListener() {
+        rstPoints.setFocusable(false);
+        rstPoints.addMouseListener(new MouseListener() {
             @Override
-            public void actionPerformed(ActionEvent ae) {
+            public void mouseClicked(MouseEvent me) {
                 resetPoints();
             }
+
+            @Override
+            public void mousePressed(MouseEvent me) {
+                // Nothing to do
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent me) {
+                // Nothing to do
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent me) {
+                // Nothing to do
+            }
+
+            @Override
+            public void mouseExited(MouseEvent me) {
+                // Nothing to do
+            }
+
         });
         
         // Add elements to the panel
@@ -85,9 +107,6 @@ public final class GamePoints extends JPanel{
         updateLabels();
     }
     
-    public void setFocusableButton(boolean status){
-        rstPoints.setFocusable(status);
-    }
     /**
      * Method used to update text labels on screen
      */

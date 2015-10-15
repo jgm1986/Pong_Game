@@ -27,6 +27,9 @@ import javax.swing.JPanel;
  * @author <a href="mailto:jgm1986@hotmail.com">Javier Gusano Martinez</a>
  */
 public class PongFrame extends JFrame{
+    /**
+     * Default class constructor.
+     */
     public PongFrame(){
         setTitle("Pong Game - Java SE Example");
         setSize(746, 544);
@@ -39,7 +42,7 @@ public class PongFrame extends JFrame{
         mainPanel.addKeyListener(null);
         
         // Auxiliar panels
-        GamePoints points = new GamePoints();
+        final GamePoints points = new GamePoints();
         
         mainPanel.add(points, BorderLayout.SOUTH);
         
@@ -55,7 +58,7 @@ public class PongFrame extends JFrame{
         setLocationRelativeTo(null);
         setVisible(true);
         repaint();
-        System.out.println("Game Dimensions: " + game.getSize());
+        // System.out.println("Game Dimensions: " + game.getSize());
         Graphics2D g2 = (Graphics2D) game.getGraphics();
         g2.drawRect(0, 0, 10, 416);
         
@@ -73,18 +76,14 @@ public class PongFrame extends JFrame{
                     game.timerStartStop();
                 } else {
                     game.setFlag(keyCode, true);
-                    System.out.println(game.debugKeys());
                 }
             }
 
             @Override
             public void keyReleased(KeyEvent ke) {
-                System.out.println(ke.getKeyCode());
                 int keyCode = ke.getKeyCode();
                 game.setFlag(keyCode, false);
-                System.out.println(game.debugKeys());
             }
         });
-        setFocusable(true);
     }
 }

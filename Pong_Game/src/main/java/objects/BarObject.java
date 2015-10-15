@@ -20,6 +20,12 @@ public class BarObject {
     private Rectangle2D rectangle;
     private Color color;
     
+    /**
+     * Default class constructor.
+     * @param x X coordinate for the bar start point.
+     * @param y Y coordinate for the bar start point.
+     * @param color Bar color.
+     */
     public BarObject(int x, int y, Color color){
         pos_x = x;
         pos_y = y;
@@ -27,6 +33,9 @@ public class BarObject {
         this.color = color;
     }
     
+    /**
+     * Move the bar up in one unit.
+     */
     public void moveUp(){
         if(pos_y > 0){
             pos_y--;
@@ -34,6 +43,9 @@ public class BarObject {
         }
     }
     
+    /**
+     * Move the bar down in one unit.
+     */
     public void moveDown(){
         if(pos_y < (480 - (height))){
             pos_y++;
@@ -41,26 +53,50 @@ public class BarObject {
         }
     }
     
+    /**
+     * Method used to get the graphical element of this ball.
+     * @return Graphical element of the bar.
+     */
     public Rectangle2D getBarGraph(){
         return rectangle;
     }
     
+    /**
+     * Get with dimension of this bar.
+     * @return With size.
+     */
     public int getWith(){
         return with;
     }
     
+    /**
+     * Get height dimension of this bar.
+     * @return Height size.
+     */
     public int getHeight(){
         return height;
     }
     
+    /**
+     * Get the color of this bar.
+     * @return Color.
+     */
     public Color getColor(){
         return color;
     }
     
+    /**
+     * Get current X position of this bar.
+     * @return X coordinate.
+     */
     public int getX(){
         return pos_x;
     }
     
+    /**
+     * Get current Y position of this bar.
+     * @return Y coordinate.
+     */
     public int getY(){
         return pos_y;
     }
