@@ -58,7 +58,6 @@ public class GamePanel extends JPanel{
                  updatePositions();
              }
          });
-         //timer.start();
     }
     
     /**
@@ -130,7 +129,17 @@ public class GamePanel extends JPanel{
     }
     
     private void updatePositions(){
+        // Ball position
         ball.updatePosition();
+        switch(playerPoint()){
+            case -1:
+                ball.resetBall();
+                break;
+            case 1:
+                ball.resetBall();
+                break;
+        }
+                
         // Left player
         if(key_w){
             leftPlayer.moveUp();
@@ -162,5 +171,27 @@ public class GamePanel extends JPanel{
      */
     public boolean gameRunning(){
         return timer.isRunning();
+    }
+
+    /**
+     * This method check if the ball has found a player bar to continue the game
+     * or not to point the player.
+     * @return Returns -1 if left player loss the ball, 0 player hit the ball and
+     * 1 if the right player loss the ball.
+     */
+    private int playerPoint() {
+        // Check Left player.
+        if(ball.getX() <= 20){
+            if((ball.getY() < leftPlayer.getY()) || (ball.getY() > (leftPlayer.getY() + leftPlayer.getHeight()))){
+                return -1;
+            }
+        }
+        // Check Right player
+        if(ball.getX() >= 700){
+            if((ball.getY() < rightPlayer.getY()) || (ball.getY() > (rightPlayer.getY() + rightPlayer.getHeight()))){
+                return 1;
+            }
+        }
+        return 0;
     }
 }

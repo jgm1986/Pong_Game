@@ -56,4 +56,12 @@ public class BarObject {
     public Color getColor(){
         return color;
     }
+    
+    public int getX(){
+        return pos_x;
+    }
+    
+    public int getY(){
+        return pos_y;
+    }
 }

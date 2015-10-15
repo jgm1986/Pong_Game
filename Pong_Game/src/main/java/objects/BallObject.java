@@ -49,14 +49,22 @@ public class BallObject {
     }
     
     public void updatePosition(){
-        if(pos_x <= 20 || pos_x >= 700){
-            dir_x *= -1;
-        }
-        if(pos_y <= 0 || pos_y >= 460){
-            dir_y *= -1;
-        }
         pos_x = pos_x + dir_x;
         pos_y = pos_y + dir_y;
+        if(pos_x < 20 || pos_x > 700){
+            dir_x *= -1;
+        }
+        if(pos_y < 0 || pos_y > 460){
+            dir_y *= -1;
+        }
         ball.setFrame(pos_x, pos_y, 20, 20);
+    }
+    
+    public int getX(){
+        return pos_x;
+    }
+    
+    public int getY(){
+        return pos_y;
     }
 }
