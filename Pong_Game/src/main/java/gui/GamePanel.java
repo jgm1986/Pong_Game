@@ -195,16 +195,21 @@ public class GamePanel extends JPanel{
      */
     private int playerPoint() {
         // Check Left player.
+        int ballVerticalCenter = ball.getY()+10;
         if(ball.getX() <= 20){
-            if((ball.getY() < leftPlayer.getY()) || (ball.getY() > (leftPlayer.getY() + leftPlayer.getHeight()))){
+            if((ballVerticalCenter < leftPlayer.getY()) || (ballVerticalCenter > (leftPlayer.getY() + leftPlayer.getHeight()))){
                 return -1;
             }
+            // Increase velocity 15%
+            ball.increaseVelocity(15);
         }
         // Check Right player
         if(ball.getX() >= 700){
-            if((ball.getY() < rightPlayer.getY()) || (ball.getY() > (rightPlayer.getY() + rightPlayer.getHeight()))){
+            if((ballVerticalCenter < rightPlayer.getY()) || (ballVerticalCenter > (rightPlayer.getY() + rightPlayer.getHeight()))){
                 return 1;
             }
+            // Increase velocity 15%
+            ball.increaseVelocity(15);
         }
         return 0;
     }

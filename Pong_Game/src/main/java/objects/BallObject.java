@@ -7,6 +7,7 @@ package objects;
 
 import java.awt.Color;
 import java.awt.geom.Ellipse2D;
+import java.util.Random;
 
 /**
  * Class for the pong ball.
@@ -19,8 +20,8 @@ public class BallObject {
     // Current position
     private int pos_x;
     private int pos_y;
-    private int dir_x = 1;
-    private int dir_y = 1;
+    private float dir_x;
+    private float dir_y;
     // Graphics object
     private final Ellipse2D ball;
     private final Color color;
@@ -36,6 +37,8 @@ public class BallObject {
         init_pos_y = y;
         pos_x = init_pos_x;
         pos_y = init_pos_y;
+        dir_x = getRandomDir();
+        dir_y = getRandomDir();
         ball = new Ellipse2D.Double(pos_x, pos_y, 20, 20);
         this.color = color;
     }
@@ -62,6 +65,8 @@ public class BallObject {
     public void resetBall(){
         pos_x = init_pos_x;
         pos_y = init_pos_y;
+        dir_x = getRandomDir();
+        dir_y = getRandomDir();
         ball.setFrame(pos_x, pos_y, 20, 20);
     }
     
@@ -70,8 +75,8 @@ public class BallObject {
      * area limits.
      */
     public void updatePosition(){
-        pos_x = pos_x + dir_x;
-        pos_y = pos_y + dir_y;
+        pos_x = pos_x + (int) dir_x;
+        pos_y = pos_y + (int) dir_y;
         if(pos_x < 20 || pos_x > 700){
             dir_x *= -1;
         }
@@ -95,5 +100,31 @@ public class BallObject {
      */
     public int getY(){
         return pos_y;
+    }
+    
+    /**
+     * Generate random direction 1 or -1.
+     * @return Return 1 or -1 to get the direction of the ball.
+     */
+    private int getRandomDir() {
+        Random rand = new Random();
+        int tmp_dir = rand.nextInt(2);
+        if(tmp_dir == 1){
+            return 1;
+        } else if(tmp_dir == 0){
+            return -1;
+        } else {
+            System.err.println("Error, bad direction generated: " + tmp_dir);
+            return -1;
+        }
+    }
+    
+    /**
+     * Increase the ball velocity the specified percent value as input.
+     * @param percent Percent value to increase the velocity.
+     */
+    public void increaseVelocity(int percent){
+        dir_x = dir_x + ((dir_x * percent)/100);
+        dir_y = dir_y + ((dir_y * percent)/100);
     }
 }

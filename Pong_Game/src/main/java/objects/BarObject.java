@@ -38,7 +38,7 @@ public class BarObject {
      */
     public void moveUp(){
         if(pos_y > 0){
-            pos_y--;
+            pos_y-=2;
             rectangle.setRect(pos_x, pos_y, with, height);
         }
     }
@@ -48,7 +48,7 @@ public class BarObject {
      */
     public void moveDown(){
         if(pos_y < (480 - (height))){
-            pos_y++;
+            pos_y+=2;
             rectangle.setRect(pos_x, pos_y, with, height);
         }
     }
