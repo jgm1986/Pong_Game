@@ -1,0 +1,10 @@
+language: java
+jdk:
+  - oraclejdk8
+script:
+  - mvn validate -f ./Pong_Game/pom.xml
+  - mvn compile -f ./Pong_Game/pom.xml
+  - mvn test -f ./Pong_Game/pom.xml
+  - mvn package -f ./Pong_Game/pom.xml
+  - mvn verify -f ./Pong_Game/pom.xml
+  - mvn install -f ./Pong_Game/pom.xml
