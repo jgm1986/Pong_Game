@@ -1,7 +1,9 @@
 # Pong Game
 
 [![Build Status](https://travis-ci.org/jgm1986/Pong_Game.svg?branch=master)](https://travis-ci.org/jgm1986/Pong_Game)
-
+[![Download](https://api.bintray.com/packages/jgm1986/Pong-Game/Pong_Game/images/download.svg)](https://bintray.com/jgm1986/Pong-Game/Pong_Game/_latestVersion)
+ 
+ 
 Traditional Pong game using Java SE GUI events (mouse & keyboard). All this code has been deployed to get an example about how to use some useful Java SE elements.
 
 ## Requirements
