@@ -6,6 +6,8 @@
  
 Traditional Pong game using Java SE GUI events (mouse & keyboard). All this code has been deployed to get an example about how to use some useful Java SE elements.
 
+![Pong Screen Capture](https://raw.githubusercontent.com/jgm1986/Pong_Game/master/img/Game.png)
+
 ## Requirements
 
 You only need last version of Java installed on your system (https://java.com/es/download/).
